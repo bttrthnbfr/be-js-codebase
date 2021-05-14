@@ -13,10 +13,10 @@ export default {
     message: 'errors.validation error or not valid',
     details,
   }),
-  EMAIL_IS_NOT_VALID: ({ details } = {}) => ({
+  EMAIL_IS_NOT_VALID: ({ email, details } = {}) => ({
     code: 10002,
     HTTPStatus: httpStatus.BAD_REQUEST,
-    message: 'errors.email is not valid',
+    message: `errors.email ${email} is not valid`,
     details,
   }),
 };

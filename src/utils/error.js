@@ -21,3 +21,15 @@ export class InternalError extends Error {
 export const throwInternalError = (internalError) => {
   throw new InternalError(internalError);
 };
+
+export const isInternalError = (interalError, err) => {
+  if (!err.isInternalError) {
+    return false;
+  }
+
+  if (interalError.code === err.code) {
+    return true;
+  }
+
+  return false;
+};

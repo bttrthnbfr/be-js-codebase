@@ -1,5 +1,5 @@
 import RepoUser from '../repository/repo_user';
-import { throwInternalError } from '../utils/error';
+import { isInternalError, throwInternalError } from '../utils/error';
 import errors from './errors';
 
 class CoreUser {
@@ -8,8 +8,14 @@ class CoreUser {
   }
 
   getUser() {
-    // test internal error
-    throwInternalError(errors.EMAIL_IS_NOT_VALID());
+    // example using isInternalError
+    // try {
+    //   throwInternalError(errors.EMAIL_IS_NOT_VALID());
+    // } catch (err) {
+    //   console.log(isInternalError(errors.EMAIL_IS_NOT_VALID(), err));
+    // }
+
+    throwInternalError(errors.EMAIL_IS_NOT_VALID({ email: 'foo@gmail.com', details: { foo: 'bar' } }));
 
     const user = {
       name: 'hafiz joundy',
