@@ -1,9 +1,14 @@
 import fastify from 'fastify';
 import RestUser from './handler/rest/rest_user';
+import db from './db/sequelize';
 
 const server = fastify();
 // eslint-disable-next-line no-new
 new RestUser(server);
+
+db.sequelize.authenticate().then(() => {
+  console.log('db sync successfull');
+});
 
 server.listen(3000, '0.0.0.0', (err, address) => {
   if (err) {
