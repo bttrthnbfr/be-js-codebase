@@ -1,5 +1,5 @@
 import RepoUser from '../repository/repo_user';
-import { isInternalError, throwInternalError } from '../utils/error';
+import { throwInternalError } from '../shared/error';
 import errors from './errors';
 
 class CoreUser {

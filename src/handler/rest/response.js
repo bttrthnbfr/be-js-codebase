@@ -1,4 +1,6 @@
 import httpStatus from 'http-status';
+import config from '../../config';
+import logger from '../../shared/logger';
 
 const messageSuccess = 'success';
 const messageError = 'error';
@@ -40,7 +42,9 @@ const sendPayload = (reply, payload, code = 200) => {
 };
 
 const parseResponseFromInternalError = (err) => {
-  // TODO show error when debug mode is on/true
+  if (config.debug) {
+    logger.error(err);
+  }
 
   let errorCode = defaultErrorCode;
   let errorMessage = defaultMessageError;

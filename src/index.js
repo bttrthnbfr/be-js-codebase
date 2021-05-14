@@ -1,21 +1,22 @@
 import fastify from 'fastify';
 import RestUser from './handler/rest/rest_user';
 import db from './db/sequelize';
+import logger from './shared/logger';
 
 const server = fastify();
 // eslint-disable-next-line no-new
 new RestUser(server);
 
 db.sequelize.authenticate().then(() => {
-  console.log('db sync successfull');
+  logger.info('DB sync successfull');
 });
 
 server.listen(3000, '0.0.0.0', (err, address) => {
   if (err) {
     // eslints-disable-next-line no-console
-    console.error(err);
+    logger.err(err);
     process.exit(1);
   }
   // eslint-disable-next-line no-console
-  console.log(`Server listening at ${address}`);
+  logger.info(`Server listening at ${address}`);
 });
