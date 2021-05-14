@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "npx babel src -d dist",
-    "start": "npm run build && nodemon dist/index.js",
+    "start": "nodemon src/index.js --exec \"node -r @babel/register\"",
+    "serve": "node dist/index.js",
     "lint": "npx eslint ./src --ext .js",
     "lint:fix": "npx eslint ./src --fix --ext .js"
   },
@@ -13,12 +14,15 @@
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.13.16",
-    "@babel/preset-env": "^7.14.2"
+    "@babel/core": "^7.14.2",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-private-methods": "^7.13.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/register": "^7.13.16",
+    "fastify": "^3.15.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
-    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
-    "@babel/register": "^7.13.16",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",

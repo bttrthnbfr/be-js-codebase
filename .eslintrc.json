@@ -17,5 +17,7 @@
   },
   "settings": {},
   "plugins": [],
-  "rules": {}
+  "rules": {
+    "class-methods-use-this": 0
+  }
 }
