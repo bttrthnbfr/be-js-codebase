@@ -25,8 +25,9 @@ This repo using sequilize as db orm, so you can use all of the features sequlize
 - docker run -p 3000:3000 be-js-test
 
 ## TODO
+- add middleware authentication such as jwt, basic auth, sso etc
+- role leveling, rbac
 - proper request validation
-- add middleware authentication such as jwt, basic auth, sso etc 
 - example database transaction
 - example caching, using redis
 - add husky
