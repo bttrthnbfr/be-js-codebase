@@ -26,6 +26,7 @@ This repo using sequilize as db orm, so you can use all of the features sequlize
 
 ## TODO
 - proper request validation
-- errorCode contract between be and fe
-- separete bussiness layer
+- create logger
+- example database transaction
+- example caching, using redis
 - ..
