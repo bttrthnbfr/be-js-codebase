@@ -4,7 +4,7 @@ const messageSuccess = 'success';
 const messageError = 'error';
 const defaultMessageError = 'unknown errors';
 
-const defaultErrorCode = 9999;
+const defaultErrorCode = 99999;
 const defaultErrorHTTPStatus = httpStatus.INTERNAL_SERVER_ERROR;
 
 export const responseDetail = (isSucess, data, message, details, errorCode) => {

@@ -2,7 +2,7 @@ import httpStatus from 'http-status';
 
 export default {
   INTERNAL_ERROR: ({ details } = {}) => ({
-    code: 9999,
+    code: 99999,
     HTTPStatus: httpStatus.INTERNAL_SERVER_ERROR,
     message: 'errors.internal error',
     details,
