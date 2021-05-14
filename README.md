@@ -26,7 +26,6 @@ This repo using sequilize as db orm, so you can use all of the features sequlize
 
 ## TODO
 - proper request validation
-- create logger
 - add middleware authentication such as jwt, basic auth, sso etc 
 - example database transaction
 - example caching, using redis
