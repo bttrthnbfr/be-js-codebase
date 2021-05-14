@@ -8,16 +8,16 @@ class CoreUser {
   }
 
   getUser() {
-    throwInternalError(errors.INTERNAL_ERROR({ details: { foo: 'bar' } }));
-    return '';
+    // test internal error
+    throwInternalError(errors.EMAIL_IS_NOT_VALID());
 
-    // const user = {
-    //   name: 'hafiz joundy',
-    //   age: 21,
-    //   address: 'gembongan',
-    // };
+    const user = {
+      name: 'hafiz joundy',
+      age: 21,
+      address: 'gembongan',
+    };
 
-    // return user;
+    return user;
   }
 
   createUser() {

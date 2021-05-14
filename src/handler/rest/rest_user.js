@@ -8,19 +8,11 @@ class RestUser {
     server.post('/user', this.createUser.bind(this));
   }
 
-  async getUser(req, rep) {
-    // try {
-    //   const result = await this.coreUser.getUser();
-    //   console.log(result);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-
-    // return 'test';
-    return response(() => this.coreUser.getUser());
+  async getUser(_, rep) {
+    return response(rep, () => this.coreUser.getUser());
   }
 
-  createUser(req, rep) {
+  createUser() {
     return this.coreUser.createUser();
   }
 }

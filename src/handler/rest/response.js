@@ -1,6 +1,15 @@
+import httpStatus from 'http-status';
+
+const messageSuccess = 'success';
+const messageError = 'error';
+const defaultMessageError = 'unknown errors';
+
+const defaultErrorCode = 9999;
+const defaultErrorHTTPStatus = httpStatus.INTERNAL_SERVER_ERROR;
+
 export const responseDetail = (isSucess, data, message, details, errorCode) => {
   const res = {
-    status: 'success',
+    status: messageSuccess,
     errorCode: errorCode || 0,
     data: data || {},
     message: message || '',
@@ -12,34 +21,53 @@ export const responseDetail = (isSucess, data, message, details, errorCode) => {
     delete res.details;
 
     if (res.message === '') {
-      res.message = 'success';
+      res.message = messageSuccess;
     }
 
     return res;
   }
 
   delete res.data;
-  res.status = 'error';
+  res.status = messageError;
   return res;
 };
 
-export default async (result) => {
+const sendPayload = (reply, payload, code = 200) => {
+  reply
+    .code(code)
+    .header('Content-Type', 'application/json; charset=utf-8')
+    .send(payload);
+};
+
+const parseResponseFromInternalError = (err) => {
+  // TODO show error when debug mode is on/true
+
+  let errorCode = defaultErrorCode;
+  let errorMessage = defaultMessageError;
+  let errorDetails = {};
+  let errorHTTPStatus = defaultErrorHTTPStatus;
+
+  if (err.isInternalError) {
+    errorCode = err.code;
+    errorMessage = err.message;
+    errorDetails = err.details;
+    errorHTTPStatus = err.HTTPStatus;
+  }
+
+  return [responseDetail(false, null, errorMessage, errorDetails, errorCode), errorHTTPStatus];
+};
+
+export default async (rep, result) => {
   try {
     // eslint-disable-next-line no-param-reassign
     result = await result();
-    return responseDetail(true, result);
+    sendPayload(rep, responseDetail(true, result));
   } catch (err) {
-    let errorCode = 9999;
-    let errorMessage = 'unkown.internal error';
-    let errorDetails = {};
+    const parseInternalError = parseResponseFromInternalError(err);
 
-    if (err.isInternalError) {
-      errorCode = err.errorCode;
-      errorMessage = err.errorMessage;
-      errorDetails = err.errorDetails;
-    }
+    const payload = parseInternalError[0];
+    const errorHTTPStatus = parseInternalError[1];
 
-    // TODO parse error
-    return responseDetail(false, null, errorMessage, errorDetails, errorCode);
+    sendPayload(rep, payload, errorHTTPStatus);
   }
 };
