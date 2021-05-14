@@ -15,5 +15,8 @@ RUN NODE_ENV=production npm install --silent
 # add app
 COPY . ./
 
+# compile app
+RUN npm run build
+
 # start app
 CMD ["npm", "run", "serve"]
