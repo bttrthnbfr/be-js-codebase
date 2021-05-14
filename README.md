@@ -1,4 +1,4 @@
-# FE React Codebase JonSoftware
+# BE JS Codebase JonSoftware
 
 This codebase created to help my when creating the client application, this codebase contains usefull example like code structure, dockerfile, lint etc.
 
