@@ -1,4 +1,6 @@
 import RepoUser from '../repository/repo_user';
+import { throwInternalError } from '../utils/error';
+import errors from './errors';
 
 class CoreUser {
   constructor() {
@@ -6,13 +8,16 @@ class CoreUser {
   }
 
   getUser() {
-    const user = {
-      name: 'hafiz joundy',
-      age: 21,
-      address: 'gembongan',
-    };
+    throwInternalError(errors.INTERNAL_ERROR({ details: { foo: 'bar' } }));
+    return '';
 
-    return user;
+    // const user = {
+    //   name: 'hafiz joundy',
+    //   age: 21,
+    //   address: 'gembongan',
+    // };
+
+    // return user;
   }
 
   createUser() {

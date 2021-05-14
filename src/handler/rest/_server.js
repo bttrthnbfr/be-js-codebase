@@ -1,1 +1,0 @@
-import fasitfy from 'fastify';

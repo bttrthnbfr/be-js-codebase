@@ -1,4 +1,5 @@
 import CoreUser from '../../core/core_user';
+import response from './response';
 
 class RestUser {
   constructor(server) {
@@ -7,8 +8,16 @@ class RestUser {
     server.post('/user', this.createUser.bind(this));
   }
 
-  getUser(req, rep) {
-    return this.coreUser.getUser();
+  async getUser(req, rep) {
+    // try {
+    //   const result = await this.coreUser.getUser();
+    //   console.log(result);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
+    // return 'test';
+    return response(() => this.coreUser.getUser());
   }
 
   createUser(req, rep) {
