@@ -8,7 +8,10 @@
     "start": "NODE_ENV=development nodemon src/index.js --exec \"node -r @babel/register\"",
     "serve": "NODE_ENV=production node dist/index.js",
     "lint": "npx eslint ./src --ext .js",
-    "lint:fix": "npx eslint ./src --fix --ext .js"
+    "lint:fix": "npx eslint ./src --fix --ext .js",
+    "s": "npx sequelize-cli",
+    "db:migrate": "npm run s -- db:migrate",
+    "db:seed": "npm run s -- db:seed"
   },
   "author": "",
   "license": "ISC",

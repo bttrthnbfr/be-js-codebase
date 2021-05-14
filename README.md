@@ -7,9 +7,13 @@ This codebase created to help my when creating the client application, this code
 - npm install or yarn 
 ## Production mode
 - NODE_ENV=production npm install or NODE_ENV=production yarn
+## Run migration/seed
+This repo using sequilize as db orm, so you can use all of the features sequlize in this repo, type ```npm run s --- <sequlize-cli command>``` or using npx ```npx sequlize-cli <command>``` ex: create migration: ```npm run s --- migration:create name-migration```
 
 # How to run in Development Mode
 - npm start
+- npm run db:migrate // run latest migration (if any)
+- npm run db:seed // run latest seed (if any)
 
 # How to run app in Production Mode
 ## Using "serve"

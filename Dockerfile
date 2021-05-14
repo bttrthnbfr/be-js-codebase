@@ -19,4 +19,6 @@ COPY . ./
 RUN npm run build
 
 # start app
+CMD ["npm", "run", "db:migrate"]
+CMD ["npm", "run", "db:seed"]
 CMD ["npm", "run", "serve"]

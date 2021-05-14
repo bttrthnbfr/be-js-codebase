@@ -1,6 +1,8 @@
-import 'dotenv/config';
+// Notes: this file should not use import/export (es6)
+// it's because this is used in /.sequilizerc to run db migration, seed etc..
+require('dotenv').config();
 
-export default {
+module.exports = {
   development: {
     username: process.env.SQL_USER,
     password: process.env.SQL_PASS,
