@@ -11,7 +11,8 @@
     "lint:fix": "npx eslint ./src --fix --ext .js",
     "s": "npx sequelize-cli",
     "db:migrate": "npm run s -- db:migrate",
-    "db:seed": "npm run s -- db:seed"
+    "db:seed": "npm run s -- db:seed",
+    "precommit": "npm run lint:fix"
   },
   "author": "",
   "license": "ISC",
