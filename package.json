@@ -14,11 +14,6 @@
     "db:seed": "npm run s -- db:seed",
     "precommit": "lint-staged"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "npm run lint:fix",
