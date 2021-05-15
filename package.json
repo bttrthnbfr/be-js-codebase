@@ -12,8 +12,7 @@
     "lint:fix": "npx eslint ./src --fix --ext .js",
     "s": "npx sequelize-cli",
     "db:migrate": "npm run s -- db:migrate",
-    "db:seed": "npm run s -- db:seed",
-    "prepare": "npx husky install"
+    "db:seed": "npm run s -- db:seed"
   },
   "lint-staged": {
     "*.js": []
