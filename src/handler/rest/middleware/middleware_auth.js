@@ -20,12 +20,16 @@ export const isRoleAuthenticate = (role, reqRoles = []) => {
   return false;
 };
 
-const passportCustomCallback = (_, res, next) => (err, user) => {
+const passportCustomCallback = (req, res, next) => (err, user) => {
   if (err) {
     return sendPayloadFromInternalError(res, internalError(errors.INTERNAL_ERROR()));
   }
 
   if (user === false) {
+    return sendPayloadFromInternalError(res, internalError(errors.UNAUTHORIZED()));
+  }
+
+  if (!isRoleAuthenticate(user.role, req.authRoles)) {
     return sendPayloadFromInternalError(res, internalError(errors.UNAUTHORIZED()));
   }
 

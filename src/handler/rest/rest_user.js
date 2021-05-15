@@ -1,4 +1,3 @@
-import passport from 'passport';
 import CoreUser from '../../core/core_user';
 import authJWT, { authRoles } from './middleware/middleware_auth';
 import response from './response';
