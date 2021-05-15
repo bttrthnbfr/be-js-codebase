@@ -1,9 +1,9 @@
-import fastify from 'fastify';
+import express from 'express';
 import RestUser from './handler/rest/rest_user';
 import db from './db/sequelize';
 import logger from './shared/logger';
 
-const server = fastify();
+const server = express();
 // eslint-disable-next-line no-new
 new RestUser(server);
 

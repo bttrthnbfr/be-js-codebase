@@ -1,13 +1,13 @@
-import httpStatus from 'http-status';
 import config from '../../config';
+import errors from '../../core/errors';
 import logger from '../../shared/logger';
 
 const messageSuccess = 'success';
 const messageError = 'error';
 const defaultMessageError = 'unknown errors';
 
-const defaultErrorCode = 99999;
-const defaultErrorHTTPStatus = httpStatus.INTERNAL_SERVER_ERROR;
+const defaultErrorCode = errors.INTERNAL_ERROR().code;
+const defaultErrorHTTPStatus = errors.INTERNAL_ERROR().HTTPStatus;
 
 export const responseDetail = (isSucess, data, message, details, errorCode) => {
   const res = {
@@ -34,14 +34,11 @@ export const responseDetail = (isSucess, data, message, details, errorCode) => {
   return res;
 };
 
-const sendPayload = (reply, payload, code = 200) => {
-  reply
-    .code(code)
-    .header('Content-Type', 'application/json; charset=utf-8')
-    .send(payload);
+export const sendPayload = (res, payload, code = 200) => {
+  res.status(code).json(payload);
 };
 
-const parseResponseFromInternalError = (err) => {
+export const parseResponseFromInternalError = (err) => {
   if (config.debug) {
     logger.error(err);
   }
@@ -61,17 +58,20 @@ const parseResponseFromInternalError = (err) => {
   return [responseDetail(false, null, errorMessage, errorDetails, errorCode), errorHTTPStatus];
 };
 
-export default async (rep, result) => {
+export const sendPayloadFromInternalError = (res, internalError) => {
+  const parseInternalError = parseResponseFromInternalError(internalError);
+  const payload = parseInternalError[0];
+  const errorHTTPStatus = parseInternalError[1];
+
+  return sendPayload(res, payload, errorHTTPStatus);
+};
+
+export default async (res, result) => {
   try {
     // eslint-disable-next-line no-param-reassign
     result = await result();
-    sendPayload(rep, responseDetail(true, result));
+    return sendPayload(res, responseDetail(true, result));
   } catch (err) {
-    const parseInternalError = parseResponseFromInternalError(err);
-
-    const payload = parseInternalError[0];
-    const errorHTTPStatus = parseInternalError[1];
-
-    sendPayload(rep, payload, errorHTTPStatus);
+    return sendPayloadFromInternalError(res, err);
   }
 };

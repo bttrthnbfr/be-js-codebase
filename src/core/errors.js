@@ -7,6 +7,12 @@ export default {
     message: 'errors.internal error',
     details,
   }),
+  UNAUTHORIZED: ({ details } = {}) => ({
+    code: 90001,
+    HTTPStatus: httpStatus.UNAUTHORIZED,
+    message: 'errors.unautorized error',
+    details,
+  }),
   VALIDATION_ERROR: ({ details } = {}) => ({
     code: 10001,
     HTTPStatus: httpStatus.BAD_REQUEST,
