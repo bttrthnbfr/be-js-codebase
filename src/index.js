@@ -9,6 +9,9 @@ new RestUser(server);
 
 db.sequelize.authenticate().then(() => {
   logger.info('DB sync successfull');
+}).catch((err) => {
+  logger.error(err);
+  process.exit(1);
 });
 
 server.listen(3000, '0.0.0.0', (err, address) => {
