@@ -12,7 +12,7 @@
     "s": "npx sequelize-cli",
     "db:migrate": "npm run s -- db:migrate",
     "db:seed": "npm run s -- db:seed",
-    "precommit": "npm run lint:fix"
+    "precommit": "lint-staged"
   },
   "husky": {
     "hooks": {
