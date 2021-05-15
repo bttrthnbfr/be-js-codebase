@@ -26,7 +26,6 @@ This repo using sequilize as db orm, so you can use all of the features sequlize
 
 ## TODO
 - example database transaction
-- example caching, using redis
 - add husky
 - testing
 - api versioning
