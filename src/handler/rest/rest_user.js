@@ -34,6 +34,7 @@ class RestUser {
     fileExtention = fileExtention[fileExtention.length - 1];
 
     res.setHeader('content-type', mimeLookup(fileExtention));
+    res.setHeader('Transfer-Encoding', 'chunked');
 
     const fileStream = await this.coreUser.readFileStream(filename);
     fileStream.on('error', (err) => {
@@ -45,7 +46,13 @@ class RestUser {
         internalError(errors.INTERNAL_ERROR()));
     });
 
-    fileStream.pipe(res);
+    fileStream.on('data', (chunked) => {
+      res.write(chunked);
+    });
+
+    fileStream.on('end', () => {
+      res.end();
+    });
   }
 }
 

@@ -6,6 +6,7 @@ import logger from './shared/logger';
 import RestAuth from './handler/rest/rest_auth';
 
 const server = express();
+server.disable('x-powered-by');
 
 new RestUser(server);
 new RestAuth(server);

@@ -25,7 +25,6 @@ This repo using sequilize as db orm, so you can use all of the features sequlize
 - docker run -p 3000:3000 be-js-test
 
 ## TODO
-- handle file upload
 - example database transaction
 - example caching, using redis
 - add husky
