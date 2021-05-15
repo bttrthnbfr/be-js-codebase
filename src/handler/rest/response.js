@@ -1,5 +1,5 @@
 import config from '../../config';
-import errors from '../../core/errors';
+import errors from '../../errors';
 import logger from '../../shared/logger';
 
 const messageSuccess = 'success';

@@ -25,4 +25,16 @@ export default {
     message: `errors.email ${email} is not valid`,
     details,
   }),
+  ERROR_UPLOAD_FILE: ({ detail, details } = {}) => ({
+    code: 10003,
+    HTTPStatus: httpStatus.BAD_REQUEST,
+    message: `errors.upload file: ${detail}`,
+    details,
+  }),
+  ERROR_FILE_NOT_FOUND: ({ filename, details } = {}) => ({
+    code: 10003,
+    HTTPStatus: httpStatus.NOT_FOUND,
+    message: `errors.file ${filename} not found`,
+    details,
+  }),
 };

@@ -1,6 +1,6 @@
 import RepoUser from '../../repository/repo_user';
 import { throwInternalError } from '../../shared/error';
-import errors from '../errors';
+import errors from '../../errors';
 import { validateCreateUser } from './validation';
 
 class CoreUser {
@@ -29,7 +29,6 @@ class CoreUser {
 
   async createUser() {
     const email = 'email';
-
     // example using validation
     await validateCreateUser(email);
 
@@ -38,6 +37,19 @@ class CoreUser {
     // return this.repoUser.createUser({
     //   email,
     // });
+  }
+
+  async uploadFileStream(fileStream, fileOrignalName) {
+    const filename = await this.repoUser.uploadFileStream(fileStream, fileOrignalName);
+    return {
+      filename,
+      link: `/user/upload/${filename}`,
+    };
+  }
+
+  async readFileStream(filename) {
+    const readStream = await this.repoUser.readFileStream(filename);
+    return readStream;
   }
 }
 

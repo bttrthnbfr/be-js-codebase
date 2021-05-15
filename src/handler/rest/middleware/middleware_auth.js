@@ -1,7 +1,7 @@
 import './passport_strategy';
 import passport from 'passport';
 import { sendPayloadFromInternalError } from '../response';
-import errors from '../../../core/errors';
+import errors from '../../../errors';
 import { internalError } from '../../../shared/error';
 
 export const authRoles = {

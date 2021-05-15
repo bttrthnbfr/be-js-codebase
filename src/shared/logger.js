@@ -1,6 +1,6 @@
 import log4js from 'log4js';
 
-// TODO append log to influxdb
+// TODO append log to influxdb so we can monitor our app via grafana
 log4js.configure({
   appenders: {
     apps: {

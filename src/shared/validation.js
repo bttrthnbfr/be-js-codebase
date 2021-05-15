@@ -1,4 +1,4 @@
-import errors from '../core/errors';
+import errors from '../errors';
 import { throwInternalError } from './error';
 
 export const validate = async (schema, data) => {
