@@ -5,6 +5,7 @@ import RestUser from './handler/rest/rest_user';
 import logger from './shared/logger';
 import RestAuth from './handler/rest/rest_auth';
 import cache from './cache/redis';
+import config from './config';
 
 const server = express();
 server.disable('x-powered-by');
@@ -29,12 +30,12 @@ cache.on('error', (err) => {
 });
 
 // serve http server
-server.listen(3000, '0.0.0.0', (err) => {
+server.listen(config.rest.port, config.rest.host, (err) => {
   if (err) {
     // eslints-disable-next-line no-console
     logger.err(err);
     process.exit(1);
   }
   // eslint-disable-next-line no-console
-  logger.info(`success.listening server at port ${3000}`);
+  logger.info(`success.listening server at port ${config.rest.port}`);
 });
