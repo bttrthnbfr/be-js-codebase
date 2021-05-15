@@ -13,10 +13,16 @@ class RestUser {
     server.post('/user', this.createUser.bind(this));
     server.post('/user/upload', uploadSingleFile('file'), this.uploadFile.bind(this));
     server.get('/user/upload/:filename', uploadSingleFile('file'), this.getFile.bind(this));
+    server.get('/user/email/:email', this.getUserByEmail.bind(this));
   }
 
   async getUser(req, res) {
     return response(res, () => this.coreUser.getUser());
+  }
+
+  async getUserByEmail(req, res) {
+    const { email } = req.params;
+    return response(res, () => this.coreUser.getUserByEmail(email));
   }
 
   async createUser(req, res) {

@@ -27,6 +27,10 @@ class CoreUser {
     return user;
   }
 
+  async getUserByEmail(email) {
+    return this.repoUser.getUserByEmail(email);
+  }
+
   async createUser() {
     const email = 'email';
     // example using validation
@@ -40,7 +44,10 @@ class CoreUser {
   }
 
   async uploadFileStream(fileStream, fileOrignalName) {
-    const filename = await this.repoUser.uploadFileStream(fileStream, fileOrignalName);
+    let filename = `${Date.now()}-${fileOrignalName}`;
+    filename = filename.split(' ').join('-'); // replace space with dash
+
+    await this.repoUser.uploadFileStream(fileStream, filename);
     return {
       filename,
       link: `/user/upload/${filename}`,

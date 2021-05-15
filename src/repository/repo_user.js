@@ -1,12 +1,14 @@
 import db from '../db/sequelize';
-import errors from '../errors';
-import { throwInternalError } from '../shared/error';
+import cache from '../cache/redis';
 import pipeline from '../shared/pipeline';
 import { localReadStream, localWriteStream } from '../storage/local';
+
+const prefixUserCacheByEmail = (email) => `user:${email}`;
 
 class RepoUser {
   constructor() {
     this.db = db;
+    this.cache = cache;
   }
 
   createUser(user) {
@@ -17,12 +19,15 @@ class RepoUser {
     return newUser;
   }
 
-  async uploadFileStream(fileStream, fileOrignalName) {
-    let fileName = `${Date.now()}-${fileOrignalName}`;
-    fileName = fileName.split(' ').join('-'); // replace space with dash
+  async getUserByEmail(email) {
+    const user = await this.cache.get(prefixUserCacheByEmail(email));
+    // console.log(user);
 
-    await pipeline(fileStream, localWriteStream(fileName));
-    return fileName;
+    return JSON.parse(user);
+  }
+
+  async uploadFileStream(fileStream, filename) {
+    await pipeline(fileStream, localWriteStream(filename));
   }
 
   async readFileStream(filename) {
