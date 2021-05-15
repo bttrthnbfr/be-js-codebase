@@ -1,11 +1,14 @@
+/* eslint-disable no-new */
 import express from 'express';
 import RestUser from './handler/rest/rest_user';
 import db from './db/sequelize';
 import logger from './shared/logger';
+import RestAuth from './handler/rest/rest_auth';
 
 const server = express();
-// eslint-disable-next-line no-new
+
 new RestUser(server);
+new RestAuth(server);
 
 db.sequelize.authenticate().then(() => {
   logger.info('DB sync successfull');
