@@ -1,4 +1,4 @@
-import CoreUser from '../../core/core_user';
+import CoreUser from '../../core/user/core_user';
 import authJWT, { authRoles } from './middleware/middleware_auth';
 import response from './response';
 
@@ -13,8 +13,8 @@ class RestUser {
     return response(res, () => this.coreUser.getUser());
   }
 
-  createUser() {
-    return this.coreUser.createUser();
+  async createUser(req, res) {
+    return response(res, () => this.coreUser.createUser());
   }
 }
 

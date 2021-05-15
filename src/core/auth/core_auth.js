@@ -1,4 +1,4 @@
-import { jwtSign } from '../shared/jwt';
+import { jwtSign } from '../../shared/jwt';
 
 class CoreAuth {
   constructor() {

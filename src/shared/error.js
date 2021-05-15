@@ -22,7 +22,7 @@ export const throwInternalError = (internalError) => {
   throw new InternalError(internalError);
 };
 
-export const internalError = (internalError) => new InternalError(internalError);
+export const internalError = (err) => new InternalError(err);
 
 export const isInternalError = (interalError, err) => {
   if (!err.isInternalError) {

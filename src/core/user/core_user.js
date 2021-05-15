@@ -1,6 +1,7 @@
-import RepoUser from '../repository/repo_user';
-import { throwInternalError } from '../shared/error';
-import errors from './errors';
+import RepoUser from '../../repository/repo_user';
+import { throwInternalError } from '../../shared/error';
+import errors from '../errors';
+import { validateCreateUser } from './validation';
 
 class CoreUser {
   constructor() {
@@ -26,11 +27,17 @@ class CoreUser {
     return user;
   }
 
-  createUser() {
-    const email = 'hafizjoundys@gmail.com';
-    return this.repoUser.createUser({
-      email,
-    });
+  async createUser() {
+    const email = 'email';
+
+    // example using validation
+    await validateCreateUser(email);
+
+    return email;
+
+    // return this.repoUser.createUser({
+    //   email,
+    // });
   }
 }
 

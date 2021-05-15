@@ -1,4 +1,4 @@
-import CoreAuth from '../../core/core_auth';
+import CoreAuth from '../../core/auth/core_auth';
 import response from './response';
 
 class RestAuth {
