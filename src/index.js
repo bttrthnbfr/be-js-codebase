@@ -29,12 +29,12 @@ cache.on('error', (err) => {
 });
 
 // serve http server
-server.listen(3000, '0.0.0.0', (err, address) => {
+server.listen(3000, '0.0.0.0', (err) => {
   if (err) {
     // eslints-disable-next-line no-console
     logger.err(err);
     process.exit(1);
   }
   // eslint-disable-next-line no-console
-  logger.info(`success.server listening at ${address}`);
+  logger.info(`success.listening server at port ${3000}`);
 });

@@ -10,6 +10,7 @@ module.exports = {
     host: process.env.SQL_HOST,
     port: process.env.SQL_PORT,
     dialect: process.env.SQL_DIALECT,
+    // eslint-disable-next-line no-console
     logging: console.log, // TODO replace with proper loging
     pool: {
       max: Number(process.env.SQL_POOL_MAX_LIMIT),
