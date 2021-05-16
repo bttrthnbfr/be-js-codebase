@@ -1,3 +1,4 @@
+import server from '.';
 import CoreUser from '../../core/user/core_user';
 import errors from '../../errors';
 import { internalError } from '../../shared/error';
@@ -7,7 +8,7 @@ import { uploadSingleFile } from './middleware/middleware_fileupload';
 import response, { sendPayloadFromInternalError } from './response';
 
 class RestUser {
-  constructor(server) {
+  constructor() {
     this.coreUser = new CoreUser();
     server.get('/user', authJWT([authRoles.ADMIN]), this.getUser.bind(this));
     server.post('/user', this.createUser.bind(this));

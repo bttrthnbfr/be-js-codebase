@@ -1,8 +1,9 @@
+import server from '.';
 import CoreAuth from '../../core/auth/core_auth';
 import response from './response';
 
 class RestAuth {
-  constructor(server) {
+  constructor() {
     this.coreAuth = new CoreAuth();
     server.post('/auth', this.auth.bind(this));
   }

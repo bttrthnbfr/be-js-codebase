@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import express from 'express';
+import server from './handler/rest';
 import db from './db/sequelize';
 import RestUser from './handler/rest/rest_user';
 import logger from './shared/logger';
@@ -7,11 +7,8 @@ import RestAuth from './handler/rest/rest_auth';
 import cache from './cache/redis';
 import config from './config';
 
-const server = express();
-server.disable('x-powered-by');
-
-new RestUser(server);
-new RestAuth(server);
+new RestUser();
+new RestAuth();
 
 // db authenticate
 db.sequelize.authenticate().then(() => {
